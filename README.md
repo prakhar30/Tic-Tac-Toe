@@ -2,7 +2,7 @@
 
 A modern implementation of the classic Tic Tac Toe game built with Next.js and TypeScript. This project features a clean, accessible UI with animations and follows best practices for React development.
 
-<img src="https://raw.githubusercontent.com/prakhar30/Tic-Tac-Toe/refs/heads/main/Docs/screenshot.png" width="200" height="200" />
+<img src="https://raw.githubusercontent.com/prakhar30/Tic-Tac-Toe/refs/heads/main/Docs/screenshot.png" height="400" />
 
 ## Features
 
