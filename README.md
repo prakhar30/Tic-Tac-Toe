@@ -30,5 +30,3 @@ A modern implementation of the classic Tic Tac Toe game built with Next.js and T
 - ⚡ Quick file creation and editing
 - 🔍 Intelligent code suggestions
 - 🛠️ Automated setup of development tools
-
-## Project Structure 
