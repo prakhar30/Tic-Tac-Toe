@@ -10,11 +10,9 @@ export const metadata: Metadata = {
   description: 'A modern Tic Tac Toe game built with Next.js',
 }
 
-export default function RootLayout({
-  children,
-}: {
+const RootLayout: React.FC<{
   children: React.ReactNode
-}) {
+}> = ({ children }) => {
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -24,4 +22,6 @@ export default function RootLayout({
       </body>
     </html>
   )
-} 
+}
+
+export default RootLayout 
