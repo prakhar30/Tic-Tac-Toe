@@ -19,3 +19,8 @@
 .animate-pop-in {
   animation: popIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 } 
+
+body {
+  @apply bg-gradient-to-b from-blue-900 to-purple-900;
+  font-family: 'Inter', sans-serif;
+}
