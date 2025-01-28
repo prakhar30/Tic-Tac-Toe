@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@improbable-eng/grpc-web": "^0.15.0",
+    "grpc-web": "^1.5.0",
     "next": "^14.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
@@ -17,9 +19,9 @@
     "@types/node": "^20.11.19",
     "@types/react": "^18.2.57",
     "@types/react-dom": "^18.2.19",
-    "autoprefixer": "^10.4.17",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
+    "autoprefixer": "^10.4.17",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",

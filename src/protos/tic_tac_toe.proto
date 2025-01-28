@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package tic_tac_toe;
+
+import "rpc_create_user.proto";
+import "rpc_login_user.proto";
+
+service TicTacToe {
+    rpc CreateUser (CreateUserRequest) returns (CreateUserResponse) {}
+    rpc LoginUser (LoginUserRequest) returns (LoginUserResponse) {}
+}
