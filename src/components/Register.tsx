@@ -14,7 +14,7 @@ const Register: React.FC<RegisterProps> = ({ toggleView }) => {
   const handleRegister = async () => {
     try {
       await NetworkManager.register(username, password);
-      alert('Registration successful');
+      toggleView();
     } catch (error) {
       alert('Registration failed');
     }

@@ -13,8 +13,9 @@ const Login: React.FC<LoginProps> = ({ toggleView }) => {
 
   const handleLogin = async () => {
     try {
-      await NetworkManager.login(username, password);
-      alert('Login successful');
+      const response = await NetworkManager.login(username, password);
+      const token = response.getAccessToken(); // Assuming the response has a getToken method
+      localStorage.setItem('accessToken', token);
     } catch (error) {
       alert('Login failed');
     }
