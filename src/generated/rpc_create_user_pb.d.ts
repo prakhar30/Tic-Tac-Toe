@@ -7,9 +7,6 @@ export class CreateUserRequest extends jspb.Message {
   getUsername(): string;
   setUsername(value: string): CreateUserRequest;
 
-  getEmail(): string;
-  setEmail(value: string): CreateUserRequest;
-
   getPassword(): string;
   setPassword(value: string): CreateUserRequest;
 
@@ -24,7 +21,6 @@ export class CreateUserRequest extends jspb.Message {
 export namespace CreateUserRequest {
   export type AsObject = {
     username: string,
-    email: string,
     password: string,
   }
 }

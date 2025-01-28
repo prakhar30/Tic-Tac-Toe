@@ -7,17 +7,6 @@ export class User extends jspb.Message {
   getUsername(): string;
   setUsername(value: string): User;
 
-  getFullName(): string;
-  setFullName(value: string): User;
-
-  getEmail(): string;
-  setEmail(value: string): User;
-
-  getPasswordChangedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setPasswordChangedAt(value?: google_protobuf_timestamp_pb.Timestamp): User;
-  hasPasswordChangedAt(): boolean;
-  clearPasswordChangedAt(): User;
-
   getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setCreatedAt(value?: google_protobuf_timestamp_pb.Timestamp): User;
   hasCreatedAt(): boolean;
@@ -34,9 +23,6 @@ export class User extends jspb.Message {
 export namespace User {
   export type AsObject = {
     username: string,
-    fullName: string,
-    email: string,
-    passwordChangedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }

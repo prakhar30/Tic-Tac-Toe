@@ -100,8 +100,7 @@ proto.tic_tac_toe.CreateUserRequest.prototype.toObject = function(opt_includeIns
 proto.tic_tac_toe.CreateUserRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
 username: jspb.Message.getFieldWithDefault(msg, 1, ""),
-email: jspb.Message.getFieldWithDefault(msg, 2, ""),
-password: jspb.Message.getFieldWithDefault(msg, 3, "")
+password: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -144,10 +143,6 @@ proto.tic_tac_toe.CreateUserRequest.deserializeBinaryFromReader = function(msg, 
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setEmail(value);
-      break;
-    case 3:
-      var value = /** @type {string} */ (reader.readString());
       msg.setPassword(value);
       break;
     default:
@@ -186,17 +181,10 @@ proto.tic_tac_toe.CreateUserRequest.serializeBinaryToWriter = function(message, 
       f
     );
   }
-  f = message.getEmail();
-  if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
-  }
   f = message.getPassword();
   if (f.length > 0) {
     writer.writeString(
-      3,
+      2,
       f
     );
   }
@@ -222,10 +210,10 @@ proto.tic_tac_toe.CreateUserRequest.prototype.setUsername = function(value) {
 
 
 /**
- * optional string email = 2;
+ * optional string password = 2;
  * @return {string}
  */
-proto.tic_tac_toe.CreateUserRequest.prototype.getEmail = function() {
+proto.tic_tac_toe.CreateUserRequest.prototype.getPassword = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -234,26 +222,8 @@ proto.tic_tac_toe.CreateUserRequest.prototype.getEmail = function() {
  * @param {string} value
  * @return {!proto.tic_tac_toe.CreateUserRequest} returns this
  */
-proto.tic_tac_toe.CreateUserRequest.prototype.setEmail = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
-};
-
-
-/**
- * optional string password = 3;
- * @return {string}
- */
-proto.tic_tac_toe.CreateUserRequest.prototype.getPassword = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.tic_tac_toe.CreateUserRequest} returns this
- */
 proto.tic_tac_toe.CreateUserRequest.prototype.setPassword = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

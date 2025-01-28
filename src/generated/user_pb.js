@@ -78,9 +78,6 @@ proto.tic_tac_toe.User.prototype.toObject = function(opt_includeInstance) {
 proto.tic_tac_toe.User.toObject = function(includeInstance, msg) {
   var f, obj = {
 username: jspb.Message.getFieldWithDefault(msg, 1, ""),
-fullName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-email: jspb.Message.getFieldWithDefault(msg, 3, ""),
-passwordChangedAt: (f = msg.getPasswordChangedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
 createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
@@ -123,19 +120,6 @@ proto.tic_tac_toe.User.deserializeBinaryFromReader = function(msg, reader) {
       msg.setUsername(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setFullName(value);
-      break;
-    case 3:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setEmail(value);
-      break;
-    case 4:
-      var value = new google_protobuf_timestamp_pb.Timestamp;
-      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setPasswordChangedAt(value);
-      break;
-    case 5:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setCreatedAt(value);
@@ -176,32 +160,10 @@ proto.tic_tac_toe.User.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getFullName();
-  if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
-  }
-  f = message.getEmail();
-  if (f.length > 0) {
-    writer.writeString(
-      3,
-      f
-    );
-  }
-  f = message.getPasswordChangedAt();
-  if (f != null) {
-    writer.writeMessage(
-      4,
-      f,
-      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
-    );
-  }
   f = message.getCreatedAt();
   if (f != null) {
     writer.writeMessage(
-      5,
+      2,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -228,85 +190,12 @@ proto.tic_tac_toe.User.prototype.setUsername = function(value) {
 
 
 /**
- * optional string full_name = 2;
- * @return {string}
- */
-proto.tic_tac_toe.User.prototype.getFullName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.tic_tac_toe.User} returns this
- */
-proto.tic_tac_toe.User.prototype.setFullName = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
-};
-
-
-/**
- * optional string email = 3;
- * @return {string}
- */
-proto.tic_tac_toe.User.prototype.getEmail = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.tic_tac_toe.User} returns this
- */
-proto.tic_tac_toe.User.prototype.setEmail = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
-};
-
-
-/**
- * optional google.protobuf.Timestamp password_changed_at = 4;
- * @return {?proto.google.protobuf.Timestamp}
- */
-proto.tic_tac_toe.User.prototype.getPasswordChangedAt = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 4));
-};
-
-
-/**
- * @param {?proto.google.protobuf.Timestamp|undefined} value
- * @return {!proto.tic_tac_toe.User} returns this
-*/
-proto.tic_tac_toe.User.prototype.setPasswordChangedAt = function(value) {
-  return jspb.Message.setWrapperField(this, 4, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.tic_tac_toe.User} returns this
- */
-proto.tic_tac_toe.User.prototype.clearPasswordChangedAt = function() {
-  return this.setPasswordChangedAt(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.tic_tac_toe.User.prototype.hasPasswordChangedAt = function() {
-  return jspb.Message.getField(this, 4) != null;
-};
-
-
-/**
- * optional google.protobuf.Timestamp created_at = 5;
+ * optional google.protobuf.Timestamp created_at = 2;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.tic_tac_toe.User.prototype.getCreatedAt = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 5));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 2));
 };
 
 
@@ -315,7 +204,7 @@ proto.tic_tac_toe.User.prototype.getCreatedAt = function() {
  * @return {!proto.tic_tac_toe.User} returns this
 */
 proto.tic_tac_toe.User.prototype.setCreatedAt = function(value) {
-  return jspb.Message.setWrapperField(this, 5, value);
+  return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -333,7 +222,7 @@ proto.tic_tac_toe.User.prototype.clearCreatedAt = function() {
  * @return {boolean}
  */
 proto.tic_tac_toe.User.prototype.hasCreatedAt = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.getField(this, 2) != null;
 };
 
 

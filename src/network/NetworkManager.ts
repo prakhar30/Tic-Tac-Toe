@@ -19,35 +19,28 @@ class NetworkManager {
         if (err) {
           reject(err);
         } else {
-          // console.log('Login response:', response.toObject());
-          console.log('Email:', response.getUser()?.getEmail());
           resolve(response);
         }
       });
     });
   }
 
-  // static register(username: string, password: string): Promise<CreateUserResponse> {
-  //   return new Promise((resolve, reject) => {
-  //     const request = new CreateUserRequest();
-  //     request.setUsername(username);
-  //     request.setPassword(password);
+  static register(username: string, password: string): Promise<CreateUserResponse> {
+    return new Promise((resolve, reject) => {
+      const request = new CreateUserRequest();
+      request.setUsername(username);
+      request.setPassword(password);
 
-  //     const client = new TicTacToeClient(SERVER_URL);
-  //     grpc.invoke(client.methodDescriptorCreateUser, {
-  //       request,
-  //       host: SERVER_URL,
-  //       onEnd: (res) => {
-  //         const { status, message } = res;
-  //         if (status === grpc.Code.OK) {
-  //           resolve();
-  //         } else {
-  //           reject(new Error(message));
-  //         }
-  //       },
-  //     });
-  //   });
-  // }
+      const client = new TicTacToeClient(SERVER_URL);
+      client.createUser(request, {}, (err, response) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(response);
+        }
+      })
+    });
+  }
 }
 
 export default NetworkManager;
