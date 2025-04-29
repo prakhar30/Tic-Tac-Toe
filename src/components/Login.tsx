@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import NetworkManager from '../network/NetworkManager';
+import { clearUserAuth, storeUserAuth } from '@/utils/auth';
 
 interface LoginProps {
   toggleView: () => void;
@@ -16,16 +17,18 @@ const Login: React.FC<LoginProps> = ({ toggleView }) => {
 
   const handleLogin = async () => {
     try {
+      clearUserAuth();
       const response = await NetworkManager.login(username, password);
       const token = response.getAccessToken();
+      const user = response.getUser();
       
-      // Store in localStorage for client-side checks
-      localStorage.setItem('accessToken', token);
+      // Get username from response if available, otherwise use input username
+      const usernameToStore = user ? user.getUsername() : username;
       
-      // Store in cookies for middleware
-      document.cookie = `accessToken=${token}; path=/`;
+      // Store authentication data
+      storeUserAuth(token, usernameToStore);
       
-      router.push('/game');
+      router.push('/lobby');
     } catch (error) {
       setError('Login failed. Please check your credentials.');
     }

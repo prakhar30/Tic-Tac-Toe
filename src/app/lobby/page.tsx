@@ -2,10 +2,10 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import GameLobby from '../../components/GameLobby';
+import GameSelection from '../../components/GameSelection';
 import UserDisplay from '@/components/UserDisplay';
 
-export default function GamePage() {
+export default function LobbyPage() {
   const router = useRouter();
 
   useEffect(() => {
@@ -16,9 +16,9 @@ export default function GamePage() {
   }, [router]);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24 relative">
+    <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-gradient-to-b from-blue-900 to-purple-900 relative">
       <UserDisplay />
-      <GameLobby />
+      <GameSelection />
     </main>
   );
-}
+} 

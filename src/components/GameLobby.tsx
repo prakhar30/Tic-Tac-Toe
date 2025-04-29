@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Board from './Board';
+import { clearUserAuth } from '@/utils/auth';
 
 const GameLobby: React.FC = () => {
   const router = useRouter();
@@ -27,10 +28,8 @@ const GameLobby: React.FC = () => {
   };
 
   const handleLogout = () => {
-    // Clear access token from localStorage
-    localStorage.removeItem('accessToken');
-    // Clear access token from cookies
-    document.cookie = 'accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    // Clear authentication data
+    clearUserAuth();
     // Navigate back to login page
     router.replace('/');
   };

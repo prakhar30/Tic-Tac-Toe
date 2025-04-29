@@ -2,21 +2,35 @@
 
 import React, { useState } from 'react';
 import NetworkManager from '../network/NetworkManager';
+import { useRouter } from 'next/navigation';
+import { storeUserAuth } from '@/utils/auth';
 
 interface RegisterProps {
   toggleView: () => void;
 }
 
 const Register: React.FC<RegisterProps> = ({ toggleView }) => {
+  const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleRegister = async () => {
     try {
-      await NetworkManager.register(username, password);
-      toggleView();
+      // Register the user
+      const registerResponse = await NetworkManager.register(username, password);
+      
+      // After registration, login the user automatically
+      const loginResponse = await NetworkManager.login(username, password);
+      const token = loginResponse.getAccessToken();
+      
+      // Store authentication data
+      storeUserAuth(token, username);
+      
+      // Navigate to lobby
+      router.push('/lobby');
     } catch (error) {
-      alert('Registration failed');
+      setError('Registration failed. Username may already be taken.');
     }
   };
 
@@ -24,6 +38,9 @@ const Register: React.FC<RegisterProps> = ({ toggleView }) => {
     <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
       <h2 className="text-2xl font-bold text-center mb-4">Tic Tac Toe</h2>
       <p className="text-center mb-6">Create your account</p>
+      {error && (
+        <p className="text-red-500 text-sm text-center mb-4">{error}</p>
+      )}
       <input
         type="text"
         placeholder="Username"
@@ -42,7 +59,7 @@ const Register: React.FC<RegisterProps> = ({ toggleView }) => {
       />
       <button
         onClick={handleRegister}
-        className="w-full bg-blue-600 text-white p-2 rounded mb-4"
+        className="w-full bg-blue-600 text-white p-2 rounded mb-4 hover:bg-blue-700 transition-colors duration-200"
       >
         Register
       </button>

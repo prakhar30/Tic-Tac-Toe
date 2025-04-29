@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useGame } from '@/context/GameContext'
 
 interface BoardProps {
@@ -8,61 +8,42 @@ interface BoardProps {
 }
 
 const Board: React.FC<BoardProps> = ({ onGameEnd }) => {
-  const { gameState, handleCellClick } = useGame()
-  const { board, winner } = gameState
-  const [squares, setSquares] = useState<Array<string | null>>(Array(9).fill(null));
-  const [isXNext, setIsXNext] = useState(true);
+  const { gameState, handleCellClick, isConnected } = useGame()
+  const { board, winner, gameOver, turn } = gameState
 
-  const calculateWinner = (squares: Array<string | null>): string | null => {
-    const lines = [
-      [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
-      [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
-      [0, 4, 8], [2, 4, 6] // diagonals
-    ];
-
-    for (const [a, b, c] of lines) {
-      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        return squares[a];
-      }
-    }
-    return null;
-  };
-
-  useEffect(() => {
-    const winner = calculateWinner(squares);
-    if (winner || squares.every(square => square !== null)) {
-      onGameEnd(winner);
-    }
-  }, [squares, onGameEnd]);
-
-  const handleSquareClick = (index: number) => {
-    if (squares[index] || calculateWinner(squares)) return;
-
-    const newSquares = squares.slice();
-    newSquares[index] = isXNext ? 'X' : 'O';
-    setSquares(newSquares);
-    setIsXNext(!isXNext);
-    handleCellClick(index);
-  };
+  if (!isConnected) {
+    return (
+      <div className="w-full text-center p-4 text-xl">
+        Connecting to game server...
+      </div>
+    );
+  }
 
   const renderSquare = (index: number) => {
-    const winner = calculateWinner(squares);
-    const isWinningSquare = winner && squares[index] === winner;
+    const value = board[index];
+    const isWinningSquare = winner && value === winner;
 
     return (
       <button
         key={index}
-        onClick={() => handleSquareClick(index)}
+        onClick={() => handleCellClick(index)}
         className={`w-24 h-24 border border-gray-300 text-5xl font-bold flex items-center justify-center
-          ${squares[index] === 'X' ? 'text-blue-500' : 'text-red-500'}
+          ${value === 'X' ? 'text-blue-500' : 'text-red-500'}
           ${isWinningSquare ? 'bg-green-100' : 'bg-white'}`}
-        disabled={!!squares[index] || !!calculateWinner(squares)}
+        disabled={value !== '' || gameOver}
         aria-label={`Cell ${index + 1}`}
       >
-        {squares[index]}
+        {value}
       </button>
     );
   };
+
+  // Notify parent component about game end
+  React.useEffect(() => {
+    if (winner || gameOver) {
+      onGameEnd(winner);
+    }
+  }, [winner, gameOver, onGameEnd]);
 
   return (
     <div 
